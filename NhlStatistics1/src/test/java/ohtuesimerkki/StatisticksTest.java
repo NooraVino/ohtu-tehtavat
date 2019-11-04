@@ -1,11 +1,11 @@
+package ohtuesimerkki;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 import ohtuesimerkki.Player;
@@ -21,9 +21,9 @@ import static org.junit.Assert.*;
  *
  * @author vino
  */
-public class StatisticsTest {
+public class StatisticksTest {
     
-     Reader readerStub = new Reader() {
+    Reader readerStub = new Reader() {
  
         public List<Player> getPlayers() {
             ArrayList<Player> players = new ArrayList<>();
@@ -33,11 +33,10 @@ public class StatisticsTest {
             players.add(new Player("Kurri",   "EDM", 37, 53));
             players.add(new Player("Yzerman", "DET", 42, 56));
             players.add(new Player("Gretzky", "EDM", 35, 89));
+            
  
             return players;
         }
-
-     
     };
  
     Statistics stats;
@@ -48,18 +47,41 @@ public class StatisticsTest {
         stats = new Statistics(readerStub);
     }  
 
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
+    
+   
+    
     @AfterClass
     public static void tearDownClass() {
     }
-
-
+    
+ 
+    
     @After
     public void tearDown() {
     }
 
+
+     @Test
+     public void search() {
+         
+       assertEquals("Semenko", stats.search("Semenko").getName());
+         
+     }
+     @Test
+     public void search2() {   
+       assertEquals(null, stats.search("ir"));
+         
+     }
+     
+     @Test
+     public void topS() {     
+      assertEquals("Lemieux", stats.topScorers(4).get(1).getName());     
+     }
+        @Test
+     public void Team() {     
+      assertEquals("Lemieux", stats.team("PIT").get(0).getName());     
+     }
+     
+     
+     
 }
