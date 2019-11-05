@@ -7,7 +7,7 @@
  */
 
 /*
-// Apply the java plugin to add support for Java
+ *  Apply the java plugin to add support for Java
 apply plugin: 'java'
 
 // In this section you declare where to find the dependencies of your project
@@ -29,3 +29,24 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 */
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'Main'
+
+run {
+    standardInput = System.in
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'Main'
+    }
+}
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
